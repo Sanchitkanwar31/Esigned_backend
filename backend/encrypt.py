@@ -46,7 +46,7 @@
 
 
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Response
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from cryptography.fernet import Fernet
@@ -76,6 +76,12 @@ def get_cipher(user_key: str) -> Fernet:
     except Exception as e:
         raise HTTPException(status_code=400, detail="Invalid encryption key format")
 
+@app.middleware("http")
+async def add_cors_header(request, call_next):
+    response: Response = await call_next(request)
+    response.headers["Access-Control-Allow-Origin"] = "https://esigned-encryption.onrender.com"
+    return response
+   
 @app.post("/encrypt")
 def encrypt_text(data: EncryptionRequest):
     try:
