@@ -56,7 +56,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://esigned-encryption.onrender.com/"],  
+    allow_origins=["https://esigned-encryption.onrender.com"],  
     allow_credentials=True,
     allow_methods=["*"],  
     allow_headers=["*"],  
