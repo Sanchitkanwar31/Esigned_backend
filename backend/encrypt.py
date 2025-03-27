@@ -79,7 +79,7 @@ def get_cipher(user_key: str) -> Fernet:
 @app.middleware("http")
 async def add_cors_header(request, call_next):
     response: Response = await call_next(request)
-    response.headers["Access-Control-Allow-Origin"] = "https://esigned-encryption.onrender.com"
+    response.headers["Access-Control-Allow-Origin"] = "https://esigned-encryption-x2wt.onrender.com"
     return response
    
 @app.post("/encrypt")
